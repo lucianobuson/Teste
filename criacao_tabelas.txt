@@ -1,0 +1,39 @@
+CREATE DATABASE `base_teste` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `clientes` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `produtos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preco` float(15,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `pedidos` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `id_cliente` bigint unsigned DEFAULT NULL,
+  `data_pedido` date NOT NULL,
+  `total` float(15,2) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_cliente_fd_idx` (`id_cliente`),
+  CONSTRAINT `id_cliente_fd` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `itens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `id_pedido` bigint unsigned DEFAULT NULL,
+  `id_produto` bigint unsigned DEFAULT NULL,
+  `quantidade` float(15,2) unsigned NOT NULL,
+  `preco` float(15,2) unsigned NOT NULL,
+  `desconto` float(15,2) unsigned DEFAULT NULL,
+  `total` float(15,2) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_produto_fk_idx` (`id_produto`),
+  KEY `id_pedido_fk_idx` (`id_pedido`),
+  CONSTRAINT `id_pedido_fk` FOREIGN KEY (`id_pedido`) REFERENCES `pedidos` (`id`),
+  CONSTRAINT `id_produto_fk` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
