@@ -20,6 +20,10 @@ type
     Label2: TLabel;
     edtId: TEdit;
     edtNome: TEdit;
+    Label3: TLabel;
+    edtCidade: TEdit;
+    Label4: TLabel;
+    edtUF: TEdit;
     procedure FormShow(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
   private
@@ -57,6 +61,8 @@ begin
     ClientesObj := TClientesObj.Create;
     ClientesObj.Id := StrToIntDef(Id_transf.Trim, 0);
     ClientesObj.Nome := edtNome.Text;
+    ClientesObj.Cidade := edtCidade.Text;
+    ClientesObj.UF := edtUF.Text;
     TClientesController.gravar(ClientesObj);
 
     FreeAndNil(ClientesObj);
@@ -80,6 +86,8 @@ begin
                 tempObjeto := TClientesController.RetornaRegistro(Id_transf);
                 edtId.Text := tempObjeto.Id.ToString;
                 edtNome.Text := tempObjeto.Nome;
+                edtCidade.Text := tempObjeto.Cidade;
+                edtUF.Text := tempObjeto.UF;
             finally
                 FreeAndNil(tempObjeto);
             end;
@@ -87,3 +95,4 @@ begin
 end;
 
 end.
+

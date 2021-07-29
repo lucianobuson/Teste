@@ -97,11 +97,15 @@ var
     tempLista: TObjectList;
     i1: integer;
 begin
-    grdPrincipal.ColCount := 2;
+    grdPrincipal.ColCount := 4;
     grdPrincipal.Cells[0, 0] := 'Id';
     grdPrincipal.Cells[1, 0] := 'Nome';
+    grdPrincipal.Cells[2, 0] := 'Cidade';
+    grdPrincipal.Cells[3, 0] := 'Uf';
     grdPrincipal.ColWidths[0] := 60;
     grdPrincipal.ColWidths[1] := 200;
+    grdPrincipal.ColWidths[2] := 200;
+    grdPrincipal.ColWidths[3] := 60;
 
     try
         tempLista := TClientesController.RetornaLista;
@@ -110,6 +114,8 @@ begin
             grdPrincipal.RowCount := grdPrincipal.RowCount + 1;
             grdPrincipal.Cells[0, grdPrincipal.RowCount-1] := TClientesObj(tempLista[i1]).Id.ToString;
             grdPrincipal.Cells[1, grdPrincipal.RowCount-1] := TClientesObj(tempLista[i1]).Nome;
+            grdPrincipal.Cells[2, grdPrincipal.RowCount-1] := TClientesObj(tempLista[i1]).Cidade;
+            grdPrincipal.Cells[3, grdPrincipal.RowCount-1] := TClientesObj(tempLista[i1]).UF;
 
             Next;
         end;
@@ -122,3 +128,4 @@ begin
 end;
 
 end.
+

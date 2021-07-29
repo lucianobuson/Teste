@@ -2,7 +2,6 @@ inherited frm_ProdutosCadastro: Tfrm_ProdutosCadastro
   Caption = 'Produto'
   ClientHeight = 101
   OnShow = FormShow
-  ExplicitWidth = 434
   ExplicitHeight = 140
   PixelsPerInch = 96
   TextHeight = 13

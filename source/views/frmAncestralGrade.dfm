@@ -5,7 +5,7 @@ inherited frm_AncestralGrade: Tfrm_AncestralGrade
   TextHeight = 13
   inherited pnlBotoes: TPanel
     Top = 236
-    ExplicitTop = 237
+    ExplicitTop = 236
     object btnAtualizar: TButton
       Left = 252
       Top = 6
@@ -52,7 +52,6 @@ inherited frm_AncestralGrade: Tfrm_AncestralGrade
     RowCount = 1
     FixedRows = 0
     TabOrder = 1
-    ExplicitHeight = 229
     ColWidths = (
       64)
     RowHeights = (

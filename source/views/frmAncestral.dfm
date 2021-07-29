@@ -21,6 +21,5 @@ object frm_Ancestral: Tfrm_Ancestral
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 145
   end
 end

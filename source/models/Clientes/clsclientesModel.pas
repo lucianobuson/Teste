@@ -27,7 +27,11 @@ implementation
 
 class function TClientesModel.alterar(pObj: TClientesObj): boolean;
 begin
-    result := executaComando('update ' + Tabela + ' set nome = "' + pObj.Nome + '" where id = ' + pObj.Id.ToString);
+    result := executaComando('update ' + Tabela + ' set ' +
+                             'nome = "' + pObj.Nome + '", ' +
+                             'cidade = "' + pObj.cidade + '", ' +
+                             'uf = "' + pObj.uf +
+                             '" where id = ' + pObj.Id.ToString);
 end;
 
 class function TClientesModel.consultarLista(pSentenca: string): TObjectList;
@@ -52,6 +56,8 @@ begin
                 tempObjeto := TClientesObj.Create;
                 tempObjeto.Id := FieldByName('Id').AsInteger;
                 tempObjeto.Nome := FieldByName('Nome').AsString;
+                tempObjeto.Cidade := FieldByName('Cidade').AsString;
+                tempObjeto.UF := FieldByName('UF').AsString;
                 Result.Add(tempObjeto);
 
                 Next;
@@ -73,6 +79,8 @@ begin
         begin
             result.Id := FieldByName('Id').AsInteger;
             result.Nome := FieldByName('Nome').AsString;
+            result.Cidade := FieldByName('Cidade').AsString;
+            result.UF := FieldByName('UF').AsString;
         end;
     finally
         FreeAndNil(tempDataset);
@@ -86,7 +94,9 @@ end;
 
 class function TClientesModel.incluir(pObj: TClientesObj): integer;
 begin
-    result := executaInsertInc('insert into ' + Tabela + ' (nome) values ("' + pObj.Nome + '")');
+    result := executaInsertInc('insert into ' + Tabela + ' (nome, cidade, uf) ' +
+                               'values ("' + pObj.Nome + '", "' + pObj.cidade + '", "' + pObj.uf + '")');
 end;
 
 end.
+
